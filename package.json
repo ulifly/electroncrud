@@ -1,0 +1,19 @@
+{
+  "name": "electroncrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "mongoose": "^7.5.0"
+  },
+  "devDependencies": {
+    "electron": "^26.2.0"
+  }
+}
