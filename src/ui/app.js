@@ -3,5 +3,6 @@ const taskName = document.querySelector('#taskName');
 const taskDescription = document.querySelector('#taskDescription');
 
 taskForm.addEventListener('submit', (e) => {
-    alert('enviado');
-})
+    e.preventDefault();
+    alert(taskName.value);
+});

@@ -1,7 +1,7 @@
 {
   "name": "electroncrud",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://www.youtube.com/watch?v=D67Liy5C86s",
   "main": "./src/index.js",
   "scripts": {
     "start": "electron ."
