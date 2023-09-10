@@ -5,10 +5,10 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      // eslint-disable-next-line comma-dangle
-      nodeIntegration: true
-    // eslint-disable-next-line comma-dangle
-    }
+      nodeIntegration: true,
+      contextIsolation: false,
+      // enableRemoteModule: true,
+    },
   });
   win.loadFile('./src/index.html');
 }
