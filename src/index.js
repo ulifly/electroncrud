@@ -1,6 +1,9 @@
 const { createWindow } = require('./main');
 const { app } = require('electron');
 
+// conectar con la base de datos
+
+require('./database');
+
 app.whenReady().then(createWindow); 
 app.allowRendererProcessReuse = false;
-// 16.18
