@@ -13,8 +13,11 @@ function createWindow() {
   win.loadFile('./src/index.html');
 }
 
-ipcMain.on('new-task', (e, task) => {
-  console.log(task);
+ipcMain.on('new-task', async (e, args) => {
+  const newTask = new Task(args);
+  const taskSaved = await newTask.save();
+  console.log(taskSaved);
+  e.reply('new-task-saved', taskSaved);
 });
 
 module.exports = { createWindow };

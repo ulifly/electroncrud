@@ -15,3 +15,7 @@ taskForm.addEventListener('submit', (e) => {
   ipcRenderer.send('new-task', task);
   taskForm.reset();
 });
+
+ipcRenderer.on('new-task-saved', (e, args) => {
+  console.log(args);
+});
