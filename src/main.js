@@ -15,14 +15,15 @@ function createWindow() {
   win.loadFile('./src/index.html');
 }
 
+// -------------crear tarea-------------//
+
 ipcMain.on('new-task', async (e, args) => {
   const newTask = new Task(args);
   const taskSaved = await newTask.save();
-  console.log(taskSaved);
   e.reply('new-task-saved', JSON.stringify(taskSaved));
 });
 
-ipcMain.on('get-tasks', async (e, args) => {
+ipcMain.on('get-tasks', async (e) => {
   const tasks = await Task.find();
   e.reply('get-tasks', JSON.stringify(tasks));
 });

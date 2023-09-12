@@ -28,7 +28,9 @@ function deleteTask(id) {
   }
 }
 
-function renderTasks(tasks) {
+// ----------------renderizar tareas----------------//
+
+function renderTasks(task) {
   taskList.innerHTML = '';
   tasks.map((t) => {
     taskList.innerHTML += `
@@ -51,7 +53,7 @@ taskForm.addEventListener('submit', (e) => {
   };
 
   if (!updateStatus) {
-    ipcRenderer.send('new-task', JSON.stringify(task));
+    ipcRenderer.send('new-task', task);// aquí la había cagado
   } else {
     ipcRenderer.send('update-task', { ...task, idTaskToUpdate });
   }
@@ -59,12 +61,16 @@ taskForm.addEventListener('submit', (e) => {
   taskForm.reset();
 });
 
+// --------------guardar tarea----------------//
+
 ipcRenderer.on('new-task-saved', (e, args) => {
   const newTask = JSON.parse(args);
   tasks.push(newTask);
   renderTasks(tasks);
   alert('Tarea guardada');
 });
+
+// --------------obtener tareas----------------//
 
 ipcRenderer.send('get-tasks');
 
@@ -75,12 +81,16 @@ ipcRenderer.on('get-tasks', (e, args) => {
   renderTasks(tasks);
 });
 
+// ----------------eliminar tarea------------------//
+
 ipcRenderer.on('delete-task-success', (e, args) => {
   const taskDeleted = JSON.parse(args);
   const newTasks = tasks.filter((t) => (t._id !== taskDeleted._id));
   tasks = newTasks;
   renderTasks(tasks);
 });
+
+// ----------------editar tarea------------------//
 
 ipcRenderer.on('update-task-success', (e, args) => {
   const updatedTask = JSON.parse(args);
