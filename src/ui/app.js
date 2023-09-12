@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
@@ -42,7 +41,6 @@ function renderTasks(task) {
         <button onclick="deleteTask('${t._id}')" >Eliminar</button>
       </li>
     `;
-    return t;
   });
 }
 
@@ -55,7 +53,7 @@ taskForm.addEventListener('submit', (e) => {
   };
 
   if (!updateStatus) {
-    ipcRenderer.send('new-task', task);// aquí la había cagado
+    ipcRenderer.send('new-task', task);// aqui la habia cagado
   } else {
     ipcRenderer.send('update-task', { ...task, idTaskToUpdate });
   }
@@ -104,4 +102,5 @@ ipcRenderer.on('update-task-success', (e, args) => {
     return t;
   });
   renderTasks(tasks);
+  updateStatus = false;
 });
