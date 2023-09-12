@@ -10,10 +10,17 @@ const taskList = document.querySelector('#taskList');
 const { ipcRenderer } = require('electron');
 
 let tasks = []; // Array de tareas
+let updateStatus = false; // Variable para saber si se va a actualizar una tarea o crear una nueva
+let idTaskToUpdate = ''; // Variable para guardar el id de la tarea a actualizar
 
 function editTask(id) {
-  alert(`click editar ${id}`);
+  idTaskToUpdate = id;
+  updateStatus = true;
+  const task = tasks.find((t) => t._id === id);
+  taskName.value = task.name;
+  taskDescription.value = task.description;
 }
+
 function deleteTask(id) {
   const result = confirm('¿Desea eliminar la tarea?');
   if (result) {
@@ -43,7 +50,12 @@ taskForm.addEventListener('submit', (e) => {
     description: taskDescription.value,
   };
 
-  ipcRenderer.send('new-task', task);
+  if (!updateStatus) {
+    ipcRenderer.send('new-task', JSON.stringify(task));
+  } else {
+    ipcRenderer.send('update-task', { ...task, idTaskToUpdate });
+  }
+
   taskForm.reset();
 });
 
@@ -67,5 +79,17 @@ ipcRenderer.on('delete-task-success', (e, args) => {
   const taskDeleted = JSON.parse(args);
   const newTasks = tasks.filter((t) => (t._id !== taskDeleted._id));
   tasks = newTasks;
+  renderTasks(tasks);
+});
+
+ipcRenderer.on('update-task-success', (e, args) => {
+  const updatedTask = JSON.parse(args);
+  tasks = tasks.map((t) => {
+    if (t._id === updatedTask._id) {
+      t.name = updatedTask.name;
+      t.description = updatedTask.description;
+    }
+    return t;
+  });
   renderTasks(tasks);
 });

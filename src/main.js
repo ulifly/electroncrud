@@ -32,4 +32,12 @@ ipcMain.on('delete-task', async (e, args) => {
   e.reply('delete-task-success', JSON.stringify(taskDeleted));
 });
 
+ipcMain.on('update-task', async (e, args) => {
+  const updatedTask = await Task.findByIdAndUpdate(args.idTaskToUpdate, {
+    name: args.name,
+    description: args.description,
+  }, { new: true });
+  e.reply('update-task-success', JSON.stringify(updatedTask));
+});
+
 module.exports = { createWindow };
