@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
@@ -41,6 +42,7 @@ function renderTasks(task) {
         <button onclick="deleteTask('${t._id}')" >Eliminar</button>
       </li>
     `;
+    return t;
   });
 }
 
