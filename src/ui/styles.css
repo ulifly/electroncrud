@@ -2,9 +2,78 @@
     background-color: black;
     color: aliceblue;
     padding: 1rem;
+    list-style: number;
 }
 
 h1 {
+    display: flex;
     color: yellow;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
 }
 
+.input-boxes {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.save-button {
+    background-color: #4CAF50;
+    margin: 10px;
+    color: rgb(255, 255, 255); 
+    font-size: 17px; line-height: 17px; 
+    padding: 8px; 
+    border-radius: 14px; 
+    font-family: Georgia, serif; font-weight: normal; text-decoration: none; 
+    font-style: normal; font-variant: normal; 
+    text-transform: none; 
+    background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); 
+    box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
+    border: 2px solid rgb(28, 110, 164); 
+    display: inline-block;
+}
+
+.save-button:hover {
+    background: #1C6EA4; 
+}
+.save-button:active {
+    background: #144E75; 
+}
+ul {
+    padding: 0;
+    margin: 0;
+    margin-left: 30px;
+}
+
+h2 {
+    color: aquamarine;
+    padding: 0;
+}
+
+.btn-edit {
+    background-color: orange;
+    border-radius: 10px;
+    color: black;
+    padding: 8px;
+    font-weight: 800;
+}
+
+.btn-edit:hover {
+    background: #4CAF50;
+}
+
+.btn-delete {
+    background-color: red;
+    border-radius: 10px;
+    color: black;
+    padding: 8px;
+    font-weight: 800;
+}
+
+.btn-delete:hover {
+    background: #4CAF50;
+}

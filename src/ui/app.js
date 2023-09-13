@@ -35,10 +35,10 @@ function renderTasks(task) {
   tasks.map((t) => {
     taskList.innerHTML += `
       <li>
-        <h2>Tarea: ${t.name}</h2>
+        <h2>${t.name}</h2>
         <p>Descripcion: ${t.description}</p>
-        <button onclick="editTask('${t._id}')" >Editar</button>
-        <button onclick="deleteTask('${t._id}')" >Eliminar</button>
+        <button class="btn-edit" onclick="editTask('${t._id}')" >Editar</button>
+        <button class="btn-delete" onclick="deleteTask('${t._id}')" >Eliminar</button>
       </li>
     `;
   });
